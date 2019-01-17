@@ -1,6 +1,6 @@
 """
-   The Database module is used to populate the database with Open Food Facts data
-   or delete the contents of the Product and Category table.
+The Database module is used to populate the database with Open Food Facts data
+or delete the contents of the Product and Category table.
 """
 
 from django.core.management.base import BaseCommand
@@ -29,17 +29,22 @@ class Command(BaseCommand):
 
     @property
     def product_count(self):
-        """ This method counts the number of products registered in the database. """
+        """
+        This method counts the number of products registered in the database.
+        """
         return Product.objects.all().count()
 
     @property
     def category_count(self):
-        """ This method counts the number of categories registered in the database. """
+        """
+        This method counts the number of categories registered in the database.
+        """
         return Category.objects.all().count()
 
     def delete_db(self):
-        """ This method deletes the data from the Product and Category table. """
-
+        """
+        This method deletes the data from the Product and Category table.
+        """
         self.stdout.write("Deleting the Product and Category table ...")
         self.stdout.write("Please wait ...")
         prod_count = self.product_count
@@ -50,9 +55,9 @@ class Command(BaseCommand):
 
     def populate_db(self):
         """
-            This method populates the database with Open Food Facts data when the Product and Category tables are empty.
-            If these tables are not empty, the user will be notified.
-            The Open Food Facts API is used.
+        This method populates the database with Open Food Facts data when the Product and Category tables are empty.
+        If these tables are not empty, the user will be notified.
+        The Open Food Facts API is used.
         """
 
         if self.db_is_empty():
@@ -94,9 +99,6 @@ class Command(BaseCommand):
                                         url=product.get('url'),
                                         category=cat).save()
 
-                # Remove duplicate products
-                self.remove_duplicate_products()
-
                 self.stdout.write("-> Database populated with Open Food Facts data.")
                 self.stdout.write(f"-> {self.product_count} products and {self.category_count} "
                                   f"categories were registered.")
@@ -109,16 +111,10 @@ class Command(BaseCommand):
             self.stdout.write("Database is not empty !")
             self.stdout.write("Please use --delete before repopulating the database.")
 
-    @staticmethod
-    def remove_duplicate_products():
-        """ This method deletes duplicate products in the database. """
-
-        distinct_products = Product.objects.all().values_list('code', flat=True).distinct('name')
-        Product.objects.exclude(code__in=distinct_products).delete()
-
     def db_is_empty(self):
-        """ This method checks if the Product table and the Category table are empty. """
-
+        """
+        This method checks if the Product table and the Category table are empty.
+        """
         if self.product_count == 0 and self.category_count == 0:
             return True
         else:

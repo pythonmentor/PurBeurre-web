@@ -36,7 +36,7 @@ API_CONFIG = {
       "tag_contains_1": "contains",
       "tag_1": "grades",
       "sort_by": "unique_scans_n",
-      "page_size": "150",
+      "page_size": "100",
       "json": "1"
     },
     "nutrition_grades": "abcde"
