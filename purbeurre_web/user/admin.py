@@ -9,8 +9,8 @@ from user.models import CustomUser
 
 class UserCreationForm(forms.ModelForm):
     """
-        A form for creating new users. Includes all the required
-        fields, plus a repeated password.
+    A form for creating new users. Includes all the required
+    fields, plus a repeated password.
     """
     password1 = forms.CharField(label='Mot de passe', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Confirmation de mot de passe', widget=forms.PasswordInput)
@@ -38,9 +38,9 @@ class UserCreationForm(forms.ModelForm):
 
 class UserChangeForm(forms.ModelForm):
     """
-        A form for updating users. Includes all the fields on
-        the user, but replaces the password field with admin's
-        password hash display field.
+    A form for updating users. Includes all the fields on
+    the user, but replaces the password field with admin's
+    password hash display field.
     """
     password = ReadOnlyPasswordHashField()
 
@@ -76,7 +76,7 @@ class UserAdmin(BaseUserAdmin):
         (None, {
             'classes': ('wide',),
             'fields': ('email', 'first_name', 'password1', 'password2')}
-        ),
+         ),
     )
     search_fields = ('email',)
     ordering = ('email',)
