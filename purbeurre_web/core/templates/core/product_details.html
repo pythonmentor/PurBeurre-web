@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <section class="bg-dark text-white" id="prod-img" style="background-image: url('{{ product.image_full_product_url }}');">
+        <div class="container text-center box">
+            <p>
+                <h3 class="mb-4">{{ product.name }}</h3>
+            </p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6 ml-auto text-center">
+                    <p>
+                        <img src="https://static.openfoodfacts.org/images/misc/nutriscore-{{ product.nutrition_grade }}.svg" alt="">
+                    </p>
+                </div>
+                <div class="col-lg-6 mr-auto text-center">
+                    <p>
+                        <h5>Repères nutritionnels pour 100g :</h5>
+                    </p>
+                    <p>
+                         <img src="{{ product.image_nutrition_url }}" alt="">
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <hr class="my-4">
+                    <div class="col-lg-8 mx-auto border border-primary rounded">
+                        <p>
+                            <a href="{{ product.url }}">
+                                <h4 >Voir la fiche d'Open Food Facts</h4>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+{% endblock %}
