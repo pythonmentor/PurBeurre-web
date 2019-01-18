@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <section class="bg-title text-white">
+        <div class="container text-center box">
+            <p>
+                <h3 class="mb-4">Mes favoris</h3>
+            </p>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+
+            {% if favorite_list %}
+                <!--Table-->
+                <table class="table table-hover table-fixed table-sm">
+
+                    <!--Table head-->
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Produit</th>
+                            <th>NUTRI-SCORE</th>
+                            <th>Substitut pour</th>
+                            <th>Catégorie</th>
+                        </tr>
+                    </thead>
+                    <!--Table head-->
+
+                    <!--Table body-->
+                    <tbody>
+                        {% for fav in favorite_list %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>
+                                    <a href="/prod-details/{{ fav.code }}">
+                                        {{ fav.name }}
+                                    </a>
+                                </td>
+                                <td>{{ fav.nutrition_grade }}</td>
+                                <td>
+                                    <a href="/prod-details/{{ fav.code_substitute_for }}">
+                                        {{ fav.name_substitute_for }}
+                                    </a>
+                                </td>
+                                <td>{{ fav.category }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                    <!--Table body-->
+
+                </table>
+                <!--Table-->
+            {% else %}
+                <div class="container text-center">
+                    <p>
+                        <h4 class="mb-4">Aucun produit enregistré !</h4>
+                    </p>
+                </div>
+            {% endif %}
+
+        </div>
+    </section>
+
+{% endblock %}
