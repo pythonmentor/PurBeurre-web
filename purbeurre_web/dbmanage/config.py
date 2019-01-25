@@ -17,7 +17,6 @@ OFF_CATS = {
         "Céréales pour petit-déjeuner",
         "Biscuits",
         "Salades composées",
-        "Plats préparés",
         "Desserts",
         "Aliments d'origine végétale",
         "Compotes",
